@@ -49,15 +49,19 @@ This is a Dockerized application that includes a FastAPI backend, an HTML fronte
 
 7. **Setting Up Grafana**
    - Log in to Grafana (http://localhost:3000, default: `admin`/`admin`).
-     
+     <img width="1552" alt="image" src="https://github.com/user-attachments/assets/c08f946f-46d6-4b65-9bb0-bea2379283be" />
+
    - Add a Prometheus data source:
      - URL: `http://host.docker.internal:9090`
-       
+       <img width="1552" alt="image" src="https://github.com/user-attachments/assets/fb694275-80c5-426c-ab77-46896518f9d9" />
+
      - Save and test the connection.
        
    - Create dashboards for:
     - Import grafana-dashboard.json into the grafana dashboard after connecting with prometheus
+      <img width="1552" alt="image" src="https://github.com/user-attachments/assets/c6851633-a0cd-4a70-8e31-4a4ff5f50f0d" />
 
+      
 8. **Stopping the Application**
    - Press `Ctrl+C` in the terminal to stop the containers.
    - Remove the containers:
