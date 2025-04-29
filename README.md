@@ -1,4 +1,4 @@
-# StockPulse
+# StockPulse Client Applicatipn
 
 This is a Dockerized application that includes a FastAPI backend, an HTML frontend, and monitoring with Prometheus and Grafana for both system resource usage and API call metrics.
 
@@ -8,51 +8,57 @@ This is a Dockerized application that includes a FastAPI backend, an HTML fronte
 ## Setup Instructions
 1. **Clone or Download the Repository**
    - Clone this repository or extract the provided archive to a directory (e.g., `client/`).
+   - Tar link: https://drive.google.com/file/d/1Rq-abpy42xTU7LjsE4c97tkrPj5NAnfZ/view?usp=sharing
+  
+   - ```bash
+     tar -xzvf model-app.tar.gz
+     ```
 
 2. **Navigate to the Project Directory**
-   ```bash
-   cd client
-   ```
-
-3. **Run the Application**
-   - Start all services using Docker Compose:
+   - if ypu're cloning the git repo
+      ```bash
+      cd Stock-Pulse_Client
+      ```
+   - if you're using the tar file
      ```bash
-     docker-compose up --build
-     ```
+      cd client
+      ```
+
+4. **Run the Application**
+   - Start all services using Docker Compose:
+  ```bash
+  docker-compose up --build
+  ```
    - This will build and start the containers for the backend, frontend, Prometheus, Grafana, and Node Exporter.
 
-4. **Access the Application**
+5. **Access the Application**
    - **Frontend**: Open http://localhost in your browser to access the HTML interface.
    - **Backend**: The API is available at http://localhost:8000 (e.g., http://localhost:8000/docs for Swagger UI).
    - **Prometheus**: Access metrics at http://localhost:9090.
    - **Grafana**: Access dashboards at http://localhost:3000 (default login: `admin`/`admin`).
    - **Node Exporter**: Metrics available at http://localhost:9100/metrics (used by Prometheus).
 
-5. **Using the Application**
-   - In the frontend, enter input data as a JSON array (e.g., `[1, 2, 3]`) and click "Submit" to send a POST request to the backend.
-   - The backend processes the input using the `model.pth` file and returns a prediction, which is displayed on the page.
+6. **Using the Application**
+   <img width="1552" alt="image" src="https://github.com/user-attachments/assets/66afbb45-9b99-461f-ad2a-cc633b8483db" />
+   - Here, in the drop down menu, you can select your company of interest.
+   - You can press the predict button, it will give 3 reponses:
+        - UP: if the model predicts that stock will go up in value
+        - DOWN: if the model predicts that stock will go down in value
+        - Company does not exist: if you type some other company that is not in the list
+        - Network Error: if there is some connection issue with the backend api call
 
-6. **Setting Up Grafana**
+7. **Setting Up Grafana**
    - Log in to Grafana (http://localhost:3000, default: `admin`/`admin`).
+     
    - Add a Prometheus data source:
-     - URL: `http://prometheus:9090`
+     - URL: `http://host.docker.internal:9090`
+       
      - Save and test the connection.
+       
    - Create dashboards for:
-     - **API Metrics**:
-       - Import dashboard ID `4701` (FastAPI/Starlette) for API call metrics (e.g., request count, latency, errors).
-       - Alternatively, create a custom dashboard using metrics like:
-         - `http_requests_total` (total requests by endpoint/status).
-         - `http_request_duration_seconds` (request latency).
-         - `prediction_latency_seconds` (custom prediction latency).
-     - **System Metrics**:
-       - Import dashboard ID `1860` (Node Exporter Full) for system resource usage (CPU, memory, disk, network).
-       - Key metrics include:
-         - `node_cpu_seconds_total` (CPU usage).
-         - `node_memory_MemAvailable_bytes` (available memory).
-         - `node_disk_io_time_seconds_total` (disk I/O).
-   - Save dashboards for reuse.
+    - Import grafana-dashboard.json into the grafana dashboard after connecting with prometheus
 
-7. **Stopping the Application**
+8. **Stopping the Application**
    - Press `Ctrl+C` in the terminal to stop the containers.
    - Remove the containers:
      ```bash
@@ -85,3 +91,6 @@ This is a Dockerized application that includes a FastAPI backend, an HTML fronte
 - Adjust the input format in the frontend to match your model's requirements.
 - For production, secure Grafana with a custom password (edit `grafana/grafana.ini`) and restrict CORS in the backend.
 - System metrics reflect the host system, not individual containers.# Stock-Pulse_Client
+
+
+complete the alternate setup using tar heading
