@@ -97,4 +97,4 @@ This is a Dockerized application that includes a FastAPI backend, an HTML fronte
 - System metrics reflect the host system, not individual containers.# Stock-Pulse_Client
 
 
-complete the alternate setup using tar heading
+
